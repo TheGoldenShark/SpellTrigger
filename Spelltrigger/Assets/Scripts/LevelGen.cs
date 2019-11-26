@@ -9,7 +9,9 @@ public class LevelGen : MonoBehaviour
 {
 
     public List<GameObject> roomPrefabs;
-
+    // Nothing works, problem is with level generation not level placement (now)
+    // Plan: Compare line by line to python program, no behaviour should be different
+    // Don't change random shit it doesnt work
     Dictionary<string, GameObject> roomPrefabsDict = new Dictionary<string, GameObject> { };
     List<List<string>> levelGrid;
     static System.Random rnd = new System.Random();
@@ -20,6 +22,7 @@ public class LevelGen : MonoBehaviour
     List<string> WRooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
     List<List<int>> roomStack = new List<List<int>>();
     bool placed = false;
+    Vector2 newCoord;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +50,8 @@ public class LevelGen : MonoBehaviour
         {
             for (int j=0; j < levelGrid[i].Count; j++)
             {
-                Instantiate(roomPrefabsDict[levelGrid[i][j]], new Vector2( i * placeScale, j * placeScale ), Quaternion.identity);
+                Vector2 newCoord = new Vector2(j * placeScale, ((levelSize - 1) - i) * placeScale);
+                Instantiate(roomPrefabsDict[levelGrid[i][j]], newCoord, Quaternion.identity);
             }
         }
     }
