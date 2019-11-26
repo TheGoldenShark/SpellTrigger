@@ -42,11 +42,12 @@ public class LevelGen : MonoBehaviour
 
     void levelPlace()
     {
+        float placeScale = 2f;
         for (int i=0; i < levelGrid.Count; i++)
         {
             for (int j=0; j < levelGrid[i].Count; j++)
             {
-                Instantiate(roomPrefabsDict[levelGrid[i][j]], new Vector2( i * 2, j * 2 ), Quaternion.identity);
+                Instantiate(roomPrefabsDict[levelGrid[i][j]], new Vector2( i * placeScale, j * placeScale ), Quaternion.identity);
             }
         }
     }
@@ -60,7 +61,7 @@ public class LevelGen : MonoBehaviour
     }
     void generate()
     {
-        levelGrid = (Enumerable.Range(0, levelSize).Select(i => (Enumerable.Range(0, levelSize).Select(j => "0000")).ToList())).ToList();
+        levelGrid = (Enumerable.Range(0, levelSize-1).Select(i => (Enumerable.Range(0, levelSize-1).Select(j => "0000")).ToList())).ToList();
         List<int> start = new List<int> { (levelSize - 1) / 2, (levelSize - 1) / 2 };
         addRoom(start, new List<string> { "1111" });
 
