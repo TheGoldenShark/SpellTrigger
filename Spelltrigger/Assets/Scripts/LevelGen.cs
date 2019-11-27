@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 
@@ -9,13 +10,13 @@ public class LevelGen : MonoBehaviour
 {
 
     public List<GameObject> roomPrefabs;
-    // Nothing works, problem is with level generation not level placement (now)
-    // Plan: Compare line by line to python program, no behaviour should be different
-    // Don't change random shit it doesnt work
+    public int levelSize;
+    public Transform playerTransform;
+
+    float placeScale = 5.4f;
     Dictionary<string, GameObject> roomPrefabsDict = new Dictionary<string, GameObject> { };
     List<List<string>> levelGrid;
     static System.Random rnd = new System.Random();
-    int levelSize = 15;
     List<string> NRooms = new List<string> { "1000", "1001", "1010", "1011", "1100", "1101", "1110" };
     List<string> SRooms = new List<string> { "0010", "0011", "0110", "0111", "1010", "1011", "1110" };
     List<string> WRooms = new List<string> { "0001", "0011", "0101", "0111", "1001", "1011", "1101" };
@@ -28,7 +29,9 @@ public class LevelGen : MonoBehaviour
     {
         generate();
         createroomPrefabsDict();
+        closeLevel();
         levelPlace();
+        playerTransform.Translate(new Vector2((levelSize-1)/2, (levelSize-1)/2)*placeScale);
     }
 
     // Update is called once per frame
@@ -45,7 +48,6 @@ public class LevelGen : MonoBehaviour
 
     void levelPlace()
     {
-        float placeScale = 1.8f;
         for (int i=0; i < levelGrid.Count; i++)
         {
             for (int j=0; j < levelGrid[i].Count; j++)
@@ -65,17 +67,28 @@ public class LevelGen : MonoBehaviour
     }
 
     // Level generates with open walls due to not checking outside of list - This closes walls around the edge
-    //void closeLevel()
-    //{
-    //    //for (int i = 0; i < levelGrid.Count(); i++)
-    //    //{
-    //    //    //    levelGrid[i][0][3] = '1';
-    //    //    //levelGrid[i][0] = levelGrid[i][0].Remove(index, 1).levelGrid[i][0](index, "g");
-    //    //}
-    //}
+    // Could possibly be written more neatly with object initialisers
+    void closeLevel()
+    {
+        for (int i = 0; i < levelSize-1; i++)
+        {
+            StringBuilder sb = new StringBuilder(levelGrid[i][0]);
+            sb[3] = '0';
+            levelGrid[i][0] = sb.ToString();
+            sb = new StringBuilder(levelGrid[i][levelGrid.Count - 1]);
+            sb[1] = '0';
+            levelGrid[i][levelGrid.Count - 1] = sb.ToString();
+            sb = new StringBuilder(levelGrid[0][i]);
+            sb[0] = '0';
+            levelGrid[0][i] = sb.ToString();
+            sb = new StringBuilder(levelGrid[levelGrid.Count - 1][i]);
+            sb[2] = '0';
+            levelGrid[levelGrid.Count - 1][i] = sb.ToString();
+        }
+    }
     void generate()
     {
-        levelGrid = (Enumerable.Range(0, levelSize-1).Select(i => (Enumerable.Range(0, levelSize-1).Select(j => "0000")).ToList())).ToList();
+        levelGrid = (Enumerable.Range(0, levelSize).Select(i => (Enumerable.Range(0, levelSize).Select(j => "0000")).ToList())).ToList();
         List<int> start = new List<int> { (levelSize - 1) / 2, (levelSize - 1) / 2 };
         addRoom(start, new List<string> { "1111" });
 
