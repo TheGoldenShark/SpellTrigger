@@ -63,6 +63,16 @@ public class LevelGen : MonoBehaviour
             roomPrefabsDict.Add((Convert.ToString(i-1, 2)).PadLeft(4, '0'), roomPrefabs[i-1]);
         }
     }
+
+    // Level generates with open walls due to not checking outside of list - This closes walls around the edge
+    //void closeLevel()
+    //{
+    //    //for (int i = 0; i < levelGrid.Count(); i++)
+    //    //{
+    //    //    //    levelGrid[i][0][3] = '1';
+    //    //    //levelGrid[i][0] = levelGrid[i][0].Remove(index, 1).levelGrid[i][0](index, "g");
+    //    //}
+    //}
     void generate()
     {
         levelGrid = (Enumerable.Range(0, levelSize-1).Select(i => (Enumerable.Range(0, levelSize-1).Select(j => "0000")).ToList())).ToList();
