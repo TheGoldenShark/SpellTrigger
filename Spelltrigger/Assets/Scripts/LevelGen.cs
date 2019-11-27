@@ -17,9 +17,9 @@ public class LevelGen : MonoBehaviour
     static System.Random rnd = new System.Random();
     int levelSize = 15;
     List<string> NRooms = new List<string> { "1000", "1001", "1010", "1011", "1100", "1101", "1110" };
-    List<string> ERooms = new List<string> { "0010", "0011", "0110", "0111", "1010", "1011", "1110" };
-    List<string> SRooms = new List<string> { "0001", "0011", "0101", "0111", "1001", "1011", "1101" };
-    List<string> WRooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
+    List<string> SRooms = new List<string> { "0010", "0011", "0110", "0111", "1010", "1011", "1110" };
+    List<string> WRooms = new List<string> { "0001", "0011", "0101", "0111", "1001", "1011", "1101" };
+    List<string> ERooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
     List<List<int>> roomStack = new List<List<int>>();
     bool placed = false;
     Vector2 newCoord;
@@ -45,7 +45,7 @@ public class LevelGen : MonoBehaviour
 
     void levelPlace()
     {
-        float placeScale = 2f;
+        float placeScale = 1.8f;
         for (int i=0; i < levelGrid.Count; i++)
         {
             for (int j=0; j < levelGrid[i].Count; j++)
