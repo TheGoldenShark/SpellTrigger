@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    public GameObject bullet;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +14,15 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {       
-            Instantiate(bullet, transform.position, Quaternion.identity);
+
+    }
+
+    public void takeDamage (int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
