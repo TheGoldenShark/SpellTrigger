@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
-    public int health;
-    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +16,12 @@ public class Player : MonoBehaviour
         
     }
 
-    public void takeDamage(int damage)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        health -= damage;
-        if (health <= 0)
+        if (other.tag == "Player")
         {
-            gameManager.gameOver();
+            Player player = other.GetComponent<Player>();
+            player.takeDamage(5);
         }
     }
 }
