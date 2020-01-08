@@ -10,6 +10,7 @@ public class LevelGen : MonoBehaviour
 {
 
     public List<GameObject> roomPrefabs;
+    public GameObject enemyPrefab;
     public int levelSize;
     public Transform playerTransform;
 
@@ -23,15 +24,18 @@ public class LevelGen : MonoBehaviour
     List<string> ERooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
     List<List<int>> roomStack = new List<List<int>>();
     bool placed = false;
+    Vector2 startPoint;
     Vector2 newCoord;
     // Start is called before the first frame update
     void Start()
     {
+        startPoint = new Vector2((levelSize - 1) / 2, (levelSize - 1) / 2) * placeScale;
         generate();
         createroomPrefabsDict();
         closeLevel();
+        enemyPlace();
         levelPlace();
-        playerTransform.Translate(new Vector2((levelSize-1)/2, (levelSize-1)/2)*placeScale);
+        playerTransform.Translate(startPoint);
     }
 
     // Update is called once per frame
@@ -44,6 +48,24 @@ public class LevelGen : MonoBehaviour
     {
         levelGrid[location[0]][location[1]] = doors[rnd.Next(doors.Count)];
         roomStack.Add(location);
+    }
+
+    void enemyPlace()
+    {
+        for (int i = 0; i < levelGrid.Count; i++)
+        {
+            for (int j = 0; j < levelGrid[i].Count; j++)
+            {
+                if (i!=7 && j!=7)
+                {
+                    Vector2 newCoord = new Vector2(j * placeScale, ((levelSize - 1) - i) * placeScale);
+                    if (newCoord != startPoint)
+                    {
+                        Instantiate(enemyPrefab, newCoord, Quaternion.identity);
+                    }
+                }
+            }
+        }
     }
 
     void levelPlace()

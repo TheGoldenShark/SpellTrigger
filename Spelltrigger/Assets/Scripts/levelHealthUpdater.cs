@@ -10,12 +10,11 @@ public class levelHealthUpdater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = GetComponent<Text>().text;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        health = ToString(player.health).text;
+        health.text = player.health.ToString();
     }
 }
