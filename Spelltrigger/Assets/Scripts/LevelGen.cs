@@ -58,6 +58,7 @@ public class LevelGen : MonoBehaviour
             {
                 if (i!=7 && j!=7)
                 {
+
                     Vector2 newCoord = new Vector2(j * placeScale, ((levelSize - 1) - i) * placeScale);
                     if (newCoord != startPoint)
                     {
