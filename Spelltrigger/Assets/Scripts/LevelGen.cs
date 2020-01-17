@@ -60,7 +60,7 @@ public class LevelGen : MonoBehaviour
                 {
 
                     Vector2 newCoord = new Vector2(j * placeScale, ((levelSize - 1) - i) * placeScale);
-                    if (newCoord != startPoint)
+                    if (newCoord != startPoint && levelGrid[i][j]!="0000")
                     {
                         Instantiate(enemyPrefab, newCoord, Quaternion.identity);
                     }
