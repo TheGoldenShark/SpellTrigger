@@ -461,7 +461,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 80
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1003,6 +1003,10 @@ MonoBehaviour:
     type: 3}
   levelSize: 7
   playerTransform: {fileID: 1470128764}
+  bossPrefabs:
+  - {fileID: 6796440659143134917, guid: 82769c1c782bb974cbadb35f238fd759, type: 3}
+  itemPrefabs:
+  - {fileID: 5971086454087439543, guid: b2aa81afab55da744bf8c7d3030975cd, type: 3}
 --- !u!4 &1736486352
 Transform:
   m_ObjectHideFlags: 0
