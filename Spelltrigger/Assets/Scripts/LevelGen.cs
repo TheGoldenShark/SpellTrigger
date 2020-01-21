@@ -28,7 +28,6 @@ public class LevelGen : MonoBehaviour
 	List<string> ERooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
 	List<List<int>> roomStack = new List<List<int>>();
 	List<List<int>> regularRoomList = new List<List<int>>();
-	List<List<int>> specialRoomList = new List<List<int>>();
 	bool placed = false;
 	Vector2 startPoint;
 	Vector2 newCoord;
@@ -42,6 +41,8 @@ public class LevelGen : MonoBehaviour
 		closeLevel();
 		levelPlace();
 		regularRoomList.Remove(new List<int> { levelSize, levelSize });
+		addSpecialRoom(bossPrefabs);
+		addSpecialRoom(itemPrefabs);
 		enemyPlace();
 		playerTransform.Translate(startPoint);
 	}
@@ -52,17 +53,31 @@ public class LevelGen : MonoBehaviour
 
 	}
 
-	void addBossRoom()
+	void addSpecialRoom(List<GameObject> prefabs)
 	{
-		List<int> bossLocation = specialRoomList[rnd.Next(specialRoomList.Count)];
-		Vector2 newCoord = new Vector2(bossLocation[1] * placeScale, ((levelSize - 1) - bossLocation[0]) * placeScale);
+		List<int> location = maxDist(regularRoomList);
+		Vector2 newCoord = new Vector2(location[1] * placeScale, ((levelSize - 1) - location[0]) * placeScale);
+		Instantiate(prefabs[rnd.Next(prefabs.Count)], newCoord, Quaternion.identity);
 
 	}
 
-	//void addItemRoom()
-	//{
-
-	//}
+	List<int> maxDist(List<List<int>> rooms)
+	{
+		List<int> maxPos = new List<int> { 0, 0 };
+		int maxMagnitude = 0;
+		int magnitude = 0;
+		foreach (List<int> location in rooms)
+		{
+			magnitude = (location[0] - (levelSize - 1) / 2) * (location[0] - (levelSize - 1) / 2) + (location[1] - (levelSize - 1) / 2) * (location[1] - (levelSize - 1) / 2);
+			if (maxMagnitude < magnitude)
+			{
+				maxMagnitude = magnitude;
+				maxPos = location;
+			}
+		}
+		rooms.Remove(maxPos);
+		return maxPos;
+	}
 
 	void addRoom(List<int> location, List<string> doors)
 	//Takes a location and a list of possible rooms, then places a random room at that location. It also adds the location to the stack.
@@ -183,7 +198,6 @@ public class LevelGen : MonoBehaviour
 				{
 					// Goes back one in the level stack
 					roomStack.RemoveAt(roomStack.Count - 1);
-					specialRoomList.Add(roomStack.Last());
 				}
 				// If the level generation has returned to the beginning, no more rooms can be placed and level generation is over
 				else break;
