@@ -17,6 +17,7 @@ public class LevelGen : MonoBehaviour
 	public List<GameObject> bossPrefabs;
 	public List<GameObject> itemPrefabs;
 
+	// The scale with which coordinates are multiplied by to be correctly positioned in the level
 	float placeScale = 5.4f;
 	Dictionary<string, GameObject> roomPrefabsDict = new Dictionary<string, GameObject> { };
 	List<List<string>> levelGrid;
@@ -27,6 +28,7 @@ public class LevelGen : MonoBehaviour
 	List<string> WRooms = new List<string> { "0001", "0011", "0101", "0111", "1001", "1011", "1101" };
 	List<string> ERooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
 	List<List<int>> roomStack = new List<List<int>>();
+	// A list of rooms that have not already had an object placed in them
 	List<List<int>> regularRoomList = new List<List<int>>();
 	bool placed = false;
 	Vector2 startPoint;
@@ -40,7 +42,7 @@ public class LevelGen : MonoBehaviour
 		createroomPrefabsDict();
 		closeLevel();
 		levelPlace();
-		regularRoomList.Remove(new List<int> { levelSize, levelSize });
+		regularRoomList.RemoveAt(0);
 		addSpecialRoom(bossPrefabs);
 		addSpecialRoom(itemPrefabs);
 		enemyPlace();
@@ -53,19 +55,27 @@ public class LevelGen : MonoBehaviour
 
 	}
 
+	// Adds a random room from the list it is given to the furthest possible room from the start distance that has not already been used for something
 	void addSpecialRoom(List<GameObject> prefabs)
 	{
+		// Uses maxDist to get the furthest location in the regularRoomList
 		List<int> location = maxDist(regularRoomList);
+		// Finds the corresponding vector2 and places a random prefab from the given list at that coordinate
 		Vector2 newCoord = new Vector2(location[1] * placeScale, ((levelSize - 1) - location[0]) * placeScale);
 		Instantiate(prefabs[rnd.Next(prefabs.Count)], newCoord, Quaternion.identity);
 
 	}
 
+	// Finds the coordinate with the furthest distance from the start in the list of coordinates given, removes and returns that coordinate
 	List<int> maxDist(List<List<int>> rooms)
 	{
+		// Various variables that are needed in this function
 		List<int> maxPos = new List<int> { 0, 0 };
 		int maxMagnitude = 0;
 		int magnitude = 0;
+		// Iterates through each item in the rooms list, calculating the magnitude of each one and comparing it to the maximum magnitude found so far
+		// If one with a greater magnitude is found the max is overwritten and location is recorded
+		// This is repeated until the whole list has been iterated through
 		foreach (List<int> location in rooms)
 		{
 			magnitude = (location[0] - (levelSize - 1) / 2) * (location[0] - (levelSize - 1) / 2) + (location[1] - (levelSize - 1) / 2) * (location[1] - (levelSize - 1) / 2);
@@ -75,6 +85,7 @@ public class LevelGen : MonoBehaviour
 				maxPos = location;
 			}
 		}
+		// Removes the location discovered from the original list, so it won't be found the next time maxDist is used
 		rooms.Remove(maxPos);
 		return maxPos;
 	}
@@ -88,19 +99,17 @@ public class LevelGen : MonoBehaviour
 	}
 
 	void enemyPlace()
-	//Loops through the final level grid, placing the room prefabs correspondingly.
+	// For all locations in the regularRoomList it places an enemy
 	{
 		foreach (var i in regularRoomList)
 		{
 			Vector2 newCoord = new Vector2(i[1] * placeScale, ((levelSize - 1) - i[0]) * placeScale);
-			if (newCoord != startPoint && levelGrid[i[0]][i[1]] != "0000")
-			{
-				Instantiate(enemyPrefab, newCoord, Quaternion.identity);
-			}
+			Instantiate(enemyPrefab, newCoord, Quaternion.identity);
 		}
 	}
 
 	void levelPlace()
+	//Loops through the final level grid, placing the room prefabs correspondingly.
 	{
 		for (int i=0; i < levelGrid.Count; i++)
 		{
