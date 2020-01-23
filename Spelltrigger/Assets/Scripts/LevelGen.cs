@@ -23,6 +23,7 @@ public class LevelGen : MonoBehaviour
 	List<List<string>> levelGrid;
 	static System.Random rnd = new System.Random();
 	//List of the possible rooms that can be placed in a given direction.
+	//Rooms are stored as a string in the format NESW, where '0' represents a wall and '1' represents a door
 	List<string> NRooms = new List<string> { "1000", "1001", "1010", "1011", "1100", "1101", "1110" };
 	List<string> SRooms = new List<string> { "0010", "0011", "0110", "0111", "1010", "1011", "1110" };
 	List<string> WRooms = new List<string> { "0001", "0011", "0101", "0111", "1001", "1011", "1101" };
@@ -32,7 +33,6 @@ public class LevelGen : MonoBehaviour
 	List<List<int>> regularRoomList = new List<List<int>>();
 	bool placed = false;
 	Vector2 startPoint;
-	Vector2 newCoord;
 	// Start is called before the first frame update
 	void Start()
 	//Runs when the game starts. Generates the level, and then places the corresponding rooms.
@@ -133,11 +133,15 @@ public class LevelGen : MonoBehaviour
 	// Level generates with open walls due to not checking outside of list - This closes walls around the edge
 	// Could possibly be written more neatly with object initialisers
 	void closeLevel()
+		// Ensures the player cannot escape the level
 	{
 		for (int i = 0; i < levelSize-1; i++)
 		{
+			// Uses stringbuilder to turn the room string into a list
 			StringBuilder sb = new StringBuilder(levelGrid[i][0]);
+			// Closes the relevant door that allows the player to escape the level
 			sb[3] = '0';
+			// Turns it back to a string and puts it in it's previous location in the levelgrid
 			levelGrid[i][0] = sb.ToString();
 			sb = new StringBuilder(levelGrid[i][levelGrid.Count - 1]);
 			sb[1] = '0';

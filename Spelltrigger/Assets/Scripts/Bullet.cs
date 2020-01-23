@@ -30,10 +30,9 @@ public class Bullet : MonoBehaviour
             enemy.takeDamage(5);
             Destroy(gameObject);
         }
-        else if (other.tag != "Player")
-        {
-            Destroy(gameObject);
-        }
-
+        //else if (other.tag != "Player")
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 }
