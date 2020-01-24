@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject bullet;
-    public int damage;
+    public Bullet bulletPrefab;
+    public int damage = 5;
     public int fireSpeed = 5;
     int timer;
     // Start is called before the first frame update
     void Start()
-    { 
+    {
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && timer<=0)
+        if (Input.GetMouseButton(0) && timer <= 0)
         {
             timer = fireSpeed;
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            placeBullet(damage);
         }
         else
         {
             timer -= 1;
-            Debug.Log(timer);
         }
     }
+
+    void placeBullet(int damage)
+    {
+        Bullet bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as Bullet;
+        bulletInstance.damage = damage;
+
+    }
 }
+
