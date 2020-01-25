@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // Loads the level
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 
 
@@ -29,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
-        SceneManager.LoadScene("Game Over");
+        // Loads the game over scene
+        SceneManager.LoadScene(2);
     }
 
     public void Announcement(string message)

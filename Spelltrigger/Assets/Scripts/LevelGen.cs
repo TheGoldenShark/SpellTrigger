@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class LevelGen : MonoBehaviour
 {
@@ -13,7 +13,6 @@ public class LevelGen : MonoBehaviour
 	public List<GameObject> roomPrefabs;
 	public GameObject enemyPrefab;
 	public int levelSize;
-	public Transform playerTransform;
 	public List<GameObject> bossPrefabs;
 	public List<GameObject> itemPrefabs;
 
@@ -30,13 +29,16 @@ public class LevelGen : MonoBehaviour
 	List<string> ERooms = new List<string> { "0100", "0101", "0110", "0111", "1100", "1101", "1110" };
 	List<List<int>> roomStack = new List<List<int>>();
 	// A list of rooms that have not already had an object placed in them
-	List<List<int>> regularRoomList = new List<List<int>>();
-	bool placed = false;
-	Vector2 startPoint;
+	private List<List<int>> regularRoomList = new List<List<int>>();
+	private bool placed = false;
+	private Vector2 startPoint;
+	private Transform playerTransform;
 	// Start is called before the first frame update
 	void Start()
 	//Runs when the game starts. Generates the level, and then places the corresponding rooms.
 	{
+		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+		playerTransform = GameObject.Find("Player").transform;
 		startPoint = new Vector2((levelSize - 1) / 2, (levelSize - 1) / 2) * placeScale;
 		generate();
 		createroomPrefabsDict();
