@@ -6,8 +6,8 @@ public class Gun : MonoBehaviour
 {
     public Bullet bulletPrefab;
     public int damage = 5;
-    public int fireSpeed = 5;
-    int timer;
+    public float fireSpeed = 5;
+    float timer;
     // Start is called before the first frame update
     void Start()
     {
