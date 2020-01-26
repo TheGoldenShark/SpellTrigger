@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     // Start is called before the first frame update
+    GameManager gameManager;
+    int damage;
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        damage = (int)(this.GetComponentInParent<Enemy>().baseDamage * gameManager.difficulty);
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.GetComponent<Player>();
-            player.takeDamage(5);
+            player.takeDamage(damage);
         }
     }
 }

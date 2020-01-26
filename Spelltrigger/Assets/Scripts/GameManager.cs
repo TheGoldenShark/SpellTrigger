@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
     public CameraFollow cameraFollow;
-    public Transform playerTranform;
     public GameObject announcementPrefab;
-    public float difficulty;
+    public float difficulty = 1;
     // Start is called before the first frame update
     private void Start()
     {
@@ -22,11 +20,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        cameraFollow.cameraUpdate(playerTranform.position);
-    }
-    private void FixedUpdate()
-    {
-        playerMovement.playerMove();
+        
     }
 
     public void gameOver()
@@ -43,6 +37,10 @@ public class GameManager : MonoBehaviour
 
     public void nextLevel()
     {
-
+        difficulty += 1;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        Announcement("Level" + difficulty.ToString());
+        SceneManager.UnloadSceneAsync(1);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }

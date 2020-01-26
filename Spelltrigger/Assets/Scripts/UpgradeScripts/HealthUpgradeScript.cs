@@ -5,10 +5,11 @@ using UnityEngine;
 public class HealthUpgradeScript : MonoBehaviour
 {
     Player player;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class HealthUpgradeScript : MonoBehaviour
         {
             other.GetComponent<Player>().health += 10;
             Destroy(gameObject);
+            gameManager.Announcement("Health Upgraded");
         }
     }
 

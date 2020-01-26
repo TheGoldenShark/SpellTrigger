@@ -275,7 +275,7 @@ MonoBehaviour:
     type: 3}
   levelSize: 7
   bossPrefabs:
-  - {fileID: 4072281804440855565, guid: 33ed6cfbe78ab944585c42d5b0916df2, type: 3}
+  - {fileID: 4708294317129010473, guid: 33ed6cfbe78ab944585c42d5b0916df2, type: 3}
   itemPrefabs:
   - {fileID: 8153345192527748383, guid: 1edd26836de490c4299c1fb3b621c6e1, type: 3}
   - {fileID: 4476164869417197410, guid: a294500dbc7d9bc4ca7a3bda95647b81, type: 3}

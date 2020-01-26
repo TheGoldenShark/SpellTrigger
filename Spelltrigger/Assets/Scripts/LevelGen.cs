@@ -48,7 +48,7 @@ public class LevelGen : MonoBehaviour
 		addSpecialRoom(bossPrefabs);
 		addSpecialRoom(itemPrefabs);
 		enemyPlace();
-		playerTransform.Translate(startPoint);
+		playerTransform.position = startPoint;
 	}
 
 	// Update is called once per frame

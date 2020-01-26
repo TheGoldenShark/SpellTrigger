@@ -5,9 +5,10 @@ using UnityEngine;
 public class DamageUpgradeScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    GameManager gameManager;
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -17,6 +18,7 @@ public class DamageUpgradeScript : MonoBehaviour
         {
             other.GetComponentInChildren<Gun>().damage += 5;
             Destroy(gameObject);
+            gameManager.Announcement("Damage Increased");
         }
     }
 }

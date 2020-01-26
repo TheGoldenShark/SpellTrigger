@@ -149,12 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6801df52fb642fa4c8db7ecd1d712817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 1470128765}
   cameraFollow: {fileID: 983224548}
-  playerTranform: {fileID: 1470128764}
   announcementPrefab: {fileID: 4828237054713018440, guid: 6fd4d060f199b5441be8e6c7f2715fb9,
     type: 3}
-  difficulty: 0
+  difficulty: 1
 --- !u!4 &116274288
 Transform:
   m_ObjectHideFlags: 0
@@ -409,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67264104d55a9824a9521aba0684b10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTranform: {fileID: 1470128764}
 --- !u!1 &1283194997
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +514,6 @@ GameObject:
   - component: {fileID: 1470128762}
   - component: {fileID: 1470128766}
   - component: {fileID: 1470128767}
-  - component: {fileID: 1470128765}
   - component: {fileID: 1470128768}
   m_Layer: 8
   m_Name: Player
@@ -609,20 +607,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1470128765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470128761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d5c60eb85339d4fb70680a222e585f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1470128766}
-  speed: 5
 --- !u!95 &1470128766
 Animator:
   serializedVersion: 3
@@ -682,6 +666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   gameManager: {fileID: 116274287}
+  animator: {fileID: 1470128766}
+  speed: 5
 --- !u!1 &1575479413
 GameObject:
   m_ObjectHideFlags: 0

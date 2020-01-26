@@ -5,9 +5,10 @@ using UnityEngine;
 public class BulletSpeedUpgradeScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    GameManager gameManager;
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -17,6 +18,7 @@ public class BulletSpeedUpgradeScript : MonoBehaviour
         {
             other.GetComponentInChildren<Gun>().fireSpeed = other.GetComponentInChildren<Gun>().fireSpeed/2;
             Destroy(gameObject);
+            gameManager.Announcement("Fire Rate Increased");
         }
     }
 }
