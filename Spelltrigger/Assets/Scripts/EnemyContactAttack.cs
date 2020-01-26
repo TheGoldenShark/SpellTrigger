@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyContactAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     GameManager gameManager;
