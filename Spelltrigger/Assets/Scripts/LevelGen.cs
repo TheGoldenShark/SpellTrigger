@@ -139,18 +139,22 @@ public class LevelGen : MonoBehaviour
 	{
 		for (int i = 0; i < levelSize-1; i++)
 		{
-			// Uses stringbuilder to turn the room string into a list
+			// West side
+			// Uses stringbuilder to turn the room string into a temporary list variable, so each character can be edited
 			StringBuilder sb = new StringBuilder(levelGrid[i][0]);
 			// Closes the relevant door that allows the player to escape the level
 			sb[3] = '0';
-			// Turns it back to a string and puts it in it's previous location in the levelgrid
+			// Turns it back to a string, and overwrites the original room string that was copied
 			levelGrid[i][0] = sb.ToString();
+			// East side
 			sb = new StringBuilder(levelGrid[i][levelGrid.Count - 1]);
 			sb[1] = '0';
 			levelGrid[i][levelGrid.Count - 1] = sb.ToString();
+			// North side
 			sb = new StringBuilder(levelGrid[0][i]);
 			sb[0] = '0';
 			levelGrid[0][i] = sb.ToString();
+			// West side
 			sb = new StringBuilder(levelGrid[levelGrid.Count - 1][i]);
 			sb[2] = '0';
 			levelGrid[levelGrid.Count - 1][i] = sb.ToString();
