@@ -17,7 +17,9 @@ public class LevelGen : MonoBehaviour
 	public List<GameObject> itemPrefabs;
 
 	// The scale with which coordinates are multiplied by to be correctly positioned in the level
+	GameManager gameManager;
 	float placeScale = 5.4f;
+	float offset = 0.8f;
 	Dictionary<string, GameObject> roomPrefabsDict = new Dictionary<string, GameObject> { };
 	List<List<string>> levelGrid;
 	static System.Random rnd = new System.Random();
@@ -38,6 +40,7 @@ public class LevelGen : MonoBehaviour
 	//Runs when the game starts. Generates the level, and then places the corresponding rooms.
 	{
 		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		playerTransform = GameObject.Find("Player").transform;
 		startPoint = new Vector2((levelSize - 1) / 2, (levelSize - 1) / 2) * placeScale;
 		generate();
@@ -105,8 +108,12 @@ public class LevelGen : MonoBehaviour
 	{
 		foreach (var i in regularRoomList)
 		{
-			Vector2 newCoord = new Vector2(i[1] * placeScale, ((levelSize - 1) - i[0]) * placeScale);
-			Instantiate(enemyPrefab, newCoord, Quaternion.identity);
+			for (int j = 0; j < gameManager.difficulty; j++)
+			{
+				Vector2 offsetVector = new Vector2(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-2 * offset, 2 * offset));
+				Vector2 newCoord = new Vector2(i[1] * placeScale, ((levelSize - 1) - i[0]) * placeScale);
+				Instantiate(enemyPrefab, newCoord + offsetVector, Quaternion.identity);
+			}
 		}
 	}
 

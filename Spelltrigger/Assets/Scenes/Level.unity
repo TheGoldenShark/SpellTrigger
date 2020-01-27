@@ -280,6 +280,7 @@ MonoBehaviour:
   - {fileID: 8153345192527748383, guid: 1edd26836de490c4299c1fb3b621c6e1, type: 3}
   - {fileID: 4476164869417197410, guid: a294500dbc7d9bc4ca7a3bda95647b81, type: 3}
   - {fileID: 4461510927910011461, guid: 3ce2379c9d682b445b480901924e4005, type: 3}
+  enemiesPerRoom: 3
 --- !u!4 &1736486352
 Transform:
   m_ObjectHideFlags: 0
