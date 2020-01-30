@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Loads the level
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
 
 
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         // Loads the game over scene
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void Announcement(string message)
@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
     public void nextLevel()
     {
         difficulty += 1;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
         Announcement("Level" + difficulty.ToString());
-        SceneManager.UnloadSceneAsync(1);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(2);
+        SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
 }

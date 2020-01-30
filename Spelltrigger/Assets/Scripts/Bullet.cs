@@ -31,5 +31,9 @@ public class Bullet : MonoBehaviour
             enemy.takeDamage(damage);
             Destroy(gameObject);
         }
+        else if (other.tag == "LevelObject")
+        {
+            Destroy(gameObject);
+        }
     }
 }

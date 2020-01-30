@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4708294316968517751}
   - component: {fileID: 4708294316968517748}
+  - component: {fileID: 45986077872032811}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: EnemyTrigger
@@ -57,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &45986077872032811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708294316968517750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7469e0d7fb5c34ab455e6ed716d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4708294317129010473
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +81,9 @@ GameObject:
   - component: {fileID: 4708294317129010479}
   - component: {fileID: 4708294317129010478}
   - component: {fileID: 4708294317129010476}
+  - component: {fileID: 6835462713963682530}
   - component: {fileID: 8778815321287966839}
+  - component: {fileID: 8895401703629145326}
   m_Layer: 0
   m_Name: Groundon
   m_TagString: Enemy
@@ -84,7 +99,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4708294317129010473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 16, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4708294316968517751}
@@ -166,6 +181,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &6835462713963682530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708294317129010473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cb2c74e7c7eb9448128e1e1a49b460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4708294317129010479}
+  rb: {fileID: 8895401703629145326}
+  speed: 0.5
 --- !u!114 &8778815321287966839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,5 +209,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 20
-  baseDamage: 5
+  baseDamage: 20
   gameManager: {fileID: 0}
+--- !u!50 &8895401703629145326
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708294317129010473}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
