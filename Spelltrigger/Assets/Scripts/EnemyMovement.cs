@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((playerTransform.position - transform.position).sqrMagnitude < 8f)
+        if (GetComponent<Renderer>().isVisible)
         {
             Vector2 direction = playerTransform.position - transform.position;
             rb.velocity = direction.normalized * speed;
