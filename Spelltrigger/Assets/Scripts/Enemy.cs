@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour
 
     public int baseHealth;
     public int baseDamage;
+    public int baseScore;
     [HideInInspector]
     public GameManager gameManager;
+    [HideInInspector]
+    public PersistentData data;
     private int health;
     float spriteColorTimer = 0;
     float transitionSpeed = 5;
@@ -17,6 +20,7 @@ public class Enemy : MonoBehaviour
     public void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        data = GameObject.Find("Data").GetComponent<PersistentData>();
         sprite = base.GetComponent<SpriteRenderer>();
         health = (int)(baseHealth * gameManager.difficulty);
     }
@@ -52,5 +56,6 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         Destroy(gameObject);
+        data.ScoreUpdate(baseScore * gameManager.difficulty * gameManager.difficulty);
     }
 }

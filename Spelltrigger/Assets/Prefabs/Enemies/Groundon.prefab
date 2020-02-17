@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 20
   baseDamage: 20
+  baseScore: 5
   gameManager: {fileID: 0}
 --- !u!50 &8895401703629145326
 Rigidbody2D:

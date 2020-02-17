@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     public CameraFollow cameraFollow;
     public GameObject announcementPrefab;
     public float difficulty = 1;
+    private PersistentData data;
     // Start is called before the first frame update
     private void Start()
     {
         // Loads the level
+        data = GameObject.Find("Data").GetComponent<PersistentData>();
         SceneManager.LoadScene(2, LoadSceneMode.Additive);
     }
 
@@ -26,7 +28,11 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         // Loads the game over scene
-        SceneManager.LoadScene(3);
+        data.StoreScore();
+        SceneManager.UnloadSceneAsync(1);
+        SceneManager.UnloadSceneAsync(2);
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SaveManager.SaveSaveData(new SaveData(data));
     }
 
     public void Announcement(string message)

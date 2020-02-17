@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   baseDamage: 5
+  baseScore: 1
   gameManager: {fileID: 0}
 --- !u!114 &5487849438702024427
 MonoBehaviour:

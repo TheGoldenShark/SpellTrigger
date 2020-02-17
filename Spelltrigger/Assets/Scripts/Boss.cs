@@ -14,5 +14,6 @@ public class Boss : Enemy
     {
         Destroy(gameObject);
         base.gameManager.nextLevel();
+        data.ScoreUpdate(baseScore * gameManager.difficulty * gameManager.difficulty);
     }
 }

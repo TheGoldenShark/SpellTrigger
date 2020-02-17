@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,10 +19,17 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(gameObject.scene);
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Scores()
+    {
+        SceneManager.UnloadSceneAsync(0);
+        SceneManager.LoadScene(5, LoadSceneMode.Additive);
     }
 }
