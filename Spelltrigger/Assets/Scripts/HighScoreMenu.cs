@@ -16,7 +16,7 @@ public class HighScoreMenu : MonoBehaviour
     {
         data = GameObject.Find("Data").GetComponent<PersistentData>();
         canvas = GameObject.Find("Canvas");
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(5));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("HighScores"));
         PlaceScores();
     }
 
@@ -42,5 +42,11 @@ public class HighScoreMenu : MonoBehaviour
             scoreInstance.GetComponent<Text>().text = scoreList[i].ToString();
             scoreInstance.transform.SetParent(canvas.transform);
         }
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(gameObject.scene);
     }
 }

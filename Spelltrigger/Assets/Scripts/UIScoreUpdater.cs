@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHighScores : MonoBehaviour
+public class UIScoreUpdater : MonoBehaviour
 {
     public PersistentData data;
     public Text score;

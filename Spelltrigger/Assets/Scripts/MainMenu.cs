@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene("Main", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(gameObject.scene);
     }
     public void QuitGame()
@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void Scores()
     {
-        SceneManager.UnloadSceneAsync(0);
-        SceneManager.LoadScene(5, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("MainMenu");
+        SceneManager.LoadScene("HighScores", LoadSceneMode.Additive);
     }
 }

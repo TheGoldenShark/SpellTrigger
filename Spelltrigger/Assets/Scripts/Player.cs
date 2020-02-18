@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
 
     // Used for movement
     // Animation 0=Idle 1=N 2=NE 3=E 4=SE 5=S
-    Vector2 playerInput;
-    Rigidbody2D rb;
+    private Vector2 playerInput;
+    private Rigidbody2D rb;
     public Animator animator;
-    bool flipped;
+    private bool flipped;
     public float speed;
     // Start is called before the first frame update
     void Start()

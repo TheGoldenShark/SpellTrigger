@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public CameraFollow cameraFollow;
     public GameObject announcementPrefab;
     public float difficulty = 1;
     private PersistentData data;
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         // Loads the level
         data = GameObject.Find("Data").GetComponent<PersistentData>();
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level", LoadSceneMode.Additive);
     }
 
 
@@ -29,9 +28,9 @@ public class GameManager : MonoBehaviour
     {
         // Loads the game over scene
         data.StoreScore();
-        SceneManager.UnloadSceneAsync(1);
-        SceneManager.UnloadSceneAsync(2);
-        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("Main");
+        SceneManager.UnloadSceneAsync("Level");
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
         SaveManager.SaveSaveData(new SaveData(data));
     }
 
@@ -44,9 +43,9 @@ public class GameManager : MonoBehaviour
     public void nextLevel()
     {
         difficulty += 1;
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
         Announcement("Level" + difficulty.ToString());
-        SceneManager.UnloadSceneAsync(2);
-        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("Level");
+        SceneManager.LoadScene("Level", LoadSceneMode.Additive);
     }
 }

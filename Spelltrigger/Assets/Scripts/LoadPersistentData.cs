@@ -8,7 +8,10 @@ public class LoadPersistentData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene(4, LoadSceneMode.Additive);
+        if (!SceneManager.GetSceneByName("PersistentData").isLoaded)
+        {
+            SceneManager.LoadScene("PersistentData", LoadSceneMode.Additive);
+        }
         Destroy(gameObject);
     }
 

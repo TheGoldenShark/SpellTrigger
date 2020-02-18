@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetMouseButton(0) && timer <= 0)
         {

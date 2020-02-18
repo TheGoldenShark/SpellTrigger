@@ -39,7 +39,7 @@ public class LevelGen : MonoBehaviour
 	void Start()
 	//Runs when the game starts. Generates the level, and then places the corresponding rooms.
 	{
-		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(2));
+		SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level"));
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		playerTransform = GameObject.Find("Player").transform;
 		startPoint = new Vector2((levelSize - 1) / 2, (levelSize - 1) / 2) * placeScale;
