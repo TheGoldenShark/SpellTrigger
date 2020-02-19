@@ -14,14 +14,14 @@ public class Enemy : MonoBehaviour
     public PersistentData data;
     private int health;
     float spriteColorTimer = 0;
-    float transitionSpeed = 5;
+    float transitionTime = 0.5f;
     SpriteRenderer sprite;
     // Start is called before the first frame update
     public void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         data = GameObject.Find("Data").GetComponent<PersistentData>();
-        sprite = base.GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         health = (int)(baseHealth * gameManager.difficulty);
     }
 
@@ -32,13 +32,9 @@ public class Enemy : MonoBehaviour
         {
             spriteColorTimer -= Time.deltaTime;
             Color tempColor = sprite.color;
-            tempColor.g += Time.deltaTime * transitionSpeed;
-            tempColor.b += Time.deltaTime * transitionSpeed;
+            tempColor.g += Time.deltaTime * 1/transitionTime;
+            tempColor.b += Time.deltaTime * 1/transitionTime;
             sprite.color = tempColor;
-        }
-        else
-        {
-            sprite.color = Color.white;
         }
     }
 
@@ -46,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         sprite.color = Color.red;
-        spriteColorTimer = 5f;
+        spriteColorTimer = transitionTime;
         if (health <= 0)
         {
             Die();
@@ -55,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Die()
     {
-        Destroy(gameObject);
         data.ScoreUpdate(baseScore * gameManager.difficulty * gameManager.difficulty);
+        Destroy(gameObject);
     }
 }

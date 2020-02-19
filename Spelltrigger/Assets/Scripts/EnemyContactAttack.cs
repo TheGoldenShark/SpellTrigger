@@ -10,13 +10,7 @@ public class EnemyContactAttack : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        damage = (int)(this.GetComponentInParent<Enemy>().baseDamage * gameManager.difficulty);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        damage = (int)(GetComponentInParent<Enemy>().baseDamage * gameManager.difficulty);
     }
 
     public void OnTriggerStay2D(Collider2D other)

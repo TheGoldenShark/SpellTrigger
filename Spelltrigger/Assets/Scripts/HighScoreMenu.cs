@@ -20,12 +20,6 @@ public class HighScoreMenu : MonoBehaviour
         PlaceScores();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void PlaceScores()
     {
         scoreList = data.getScoreList();
