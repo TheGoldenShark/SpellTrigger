@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthUpgradeScript : MonoBehaviour
+public class BulletSpeedUpgrade : MonoBehaviour
 {
-    Player player;
-    GameManager gameManager;
     // Start is called before the first frame update
+    GameManager gameManager;
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -17,10 +16,9 @@ public class HealthUpgradeScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Player>().health += 10;
+            other.GetComponentInChildren<Gun>().fireSpeed = other.GetComponentInChildren<Gun>().fireSpeed/2;
+            gameManager.Announcement("Fire Rate Increased");
             Destroy(gameObject);
-            gameManager.Announcement("Health Upgraded");
         }
     }
-
 }

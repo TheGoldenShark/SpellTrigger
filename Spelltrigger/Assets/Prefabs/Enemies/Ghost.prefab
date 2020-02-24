@@ -148,6 +148,7 @@ MonoBehaviour:
   baseDamage: 5
   baseScore: 1
   gameManager: {fileID: 0}
+  data: {fileID: 0}
 --- !u!114 &5487849438702024427
 MonoBehaviour:
   m_ObjectHideFlags: 0

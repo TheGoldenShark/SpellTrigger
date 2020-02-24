@@ -17,13 +17,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level", LoadSceneMode.Additive);
     }
 
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
     public void gameOver()
     {
         // Loads the game over scene

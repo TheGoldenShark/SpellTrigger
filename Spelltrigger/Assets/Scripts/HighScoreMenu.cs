@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class HighScoreMenu : MonoBehaviour
 {
+    public GameObject scorePrefab;
     private PersistentData data;
     private List<float> scoreList;
     private GameObject canvas;
-    public GameObject scorePrefab;
+    private int noScores;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,14 @@ public class HighScoreMenu : MonoBehaviour
 
     void PlaceScores()
     {
-        scoreList = data.getScoreList();
+        scoreList = data.GetScoreList();
         scoreList.Sort();
         scoreList.Reverse();
-        int noScores = 10;
-        if (scoreList.Count <= 10){
+        if (scoreList.Count <= 10)
+        {
             noScores = scoreList.Count;
         }
+        else noScores = 10;
         for (int i = 0; i < noScores; i++)
         {
             GameObject scoreInstance = Instantiate(scorePrefab, transform.position, Quaternion.identity) as GameObject;

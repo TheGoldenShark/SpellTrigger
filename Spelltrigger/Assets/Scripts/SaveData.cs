@@ -7,10 +7,6 @@ public class SaveData
 {
     // Start is called before the first frame update
     public List<float> scoreList;
-    public SaveData (SaveData saveData)
-    {
-        scoreList = saveData.scoreList;
-    }
 
     public SaveData()
     {
@@ -19,6 +15,6 @@ public class SaveData
 
     public SaveData(PersistentData data)
     {
-        scoreList = data.getScoreList();
+        scoreList = data.GetScoreList();
     }
 }

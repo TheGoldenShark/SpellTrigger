@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageUpgradeScript : MonoBehaviour
+public class HealthUpgrade : MonoBehaviour
 {
-    // Start is called before the first frame update
     GameManager gameManager;
+    // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -16,9 +16,10 @@ public class DamageUpgradeScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponentInChildren<Gun>().damage += 5;
+            other.GetComponent<Player>().health += 10;
             Destroy(gameObject);
-            gameManager.Announcement("Damage Increased");
+            gameManager.Announcement("Health Upgraded");
         }
     }
+
 }

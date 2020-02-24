@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpeedUpgradeScript : MonoBehaviour
+public class DamageUpgrade : MonoBehaviour
 {
     // Start is called before the first frame update
     GameManager gameManager;
@@ -16,9 +16,9 @@ public class BulletSpeedUpgradeScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponentInChildren<Gun>().fireSpeed = other.GetComponentInChildren<Gun>().fireSpeed/2;
+            other.GetComponentInChildren<Gun>().damage += 5;
             Destroy(gameObject);
-            gameManager.Announcement("Fire Rate Increased");
+            gameManager.Announcement("Damage Increased");
         }
     }
 }

@@ -7,15 +7,17 @@ public class PersistentData : MonoBehaviour
 {
     private float currentScore;
     private List<float> scoreList;
+    private SaveData saveData;
     // Start is called before the first frame update
     void Start()
     {
-        scoreList = SaveManager.LoadSaveData().scoreList;
+        saveData = SaveManager.LoadSaveData();
+        scoreList = saveData.scoreList;
     }
 
     public void ScoreUpdate(float score)
     {
-        this.currentScore += score;
+        currentScore += score;
     }
 
     public void StoreScore()
@@ -29,7 +31,7 @@ public class PersistentData : MonoBehaviour
         return currentScore;
     }
 
-    public List<float> getScoreList()
+    public List<float> GetScoreList()
     {
         return scoreList;
     }

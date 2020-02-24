@@ -11,18 +11,17 @@ public static class SaveManager
 
         using (FileStream stream = new FileStream(path, FileMode.Create))
         {
-            SaveData data = new SaveData(saveData);
-            formatter.Serialize(stream, data);
+            formatter.Serialize(stream, saveData);
             stream.Close();
         }
     }
 
     public static SaveData LoadSaveData()
     {
+        BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/savedata.data";
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream stream = new FileStream(path, FileMode.Open))
             {
                 SaveData data = formatter.Deserialize(stream) as SaveData;
