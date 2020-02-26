@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     public Transform playerTransform;
     public Rigidbody2D rb;
     public float speed;
+    private bool seen;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,10 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         if (GetComponent<Renderer>().isVisible)
+        {
+            seen = true;
+        }
+        if (seen)
         {
             Vector2 direction = playerTransform.position - transform.position;
             rb.velocity = direction.normalized * speed;

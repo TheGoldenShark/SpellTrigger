@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 4708294317129010473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 4708294316968517751}
   m_Father: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 4708294317129010479}
   rb: {fileID: 8895401703629145326}
-  speed: 0.5
+  speed: 1
 --- !u!114 &8778815321287966839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,10 +208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edeacb0f7abc5742b9b604b78d1002f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 20
+  baseHealth: 50
   baseDamage: 20
-  baseScore: 5
+  baseScore: 20
   gameManager: {fileID: 0}
+  data: {fileID: 0}
 --- !u!50 &8895401703629145326
 Rigidbody2D:
   serializedVersion: 4
