@@ -22,12 +22,14 @@ public class Enemy : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         data = GameObject.Find("Data").GetComponent<PersistentData>();
         sprite = GetComponent<SpriteRenderer>();
+        // Calculates the health of the enemy, so it increases with difficulty
         health = (int)(baseHealth * gameManager.difficulty);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Transitions the sprite from red to it's regular color, by adding to the green and blue component every frame
         if (spriteColorTimer >= 0)
         {
             spriteColorTimer -= Time.deltaTime;
@@ -40,17 +42,21 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage (int damage)
     {
+        // Decrements tha enemy's health, sets the sprite color to red and starts the color transition timer
         health -= damage;
         sprite.color = Color.red;
         spriteColorTimer = transitionTime;
+        // If the health goes below zero, kill the enemy
         if (health <= 0)
         {
             Die();
         }
     }
 
+    // Virtual function so it can be overriden in child classes
     public virtual void Die()
     {
+        // Updates the score and destroys the enemy object
         data.ScoreUpdate(baseScore * gameManager.difficulty * gameManager.difficulty);
         Destroy(gameObject);
     }

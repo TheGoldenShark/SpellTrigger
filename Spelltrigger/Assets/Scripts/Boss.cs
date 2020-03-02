@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    // Runs instead of the Die() function in the parent class, advancing to the next level and increasing score
     public override void Die()
     {
         Destroy(gameObject);

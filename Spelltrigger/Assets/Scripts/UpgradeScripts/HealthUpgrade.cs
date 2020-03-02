@@ -14,9 +14,11 @@ public class HealthUpgrade : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Runs if the object collided with is the player
         if (other.tag == "Player")
         {
-            other.GetComponent<Player>().health += 10;
+            other.GetComponent<Player>().health += 10* (int) gameManager.difficulty;
+            // Announces to the player that health increases, and destroys the item
             Destroy(gameObject);
             gameManager.Announcement("Health Upgraded");
         }

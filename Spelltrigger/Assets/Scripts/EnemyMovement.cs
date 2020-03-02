@@ -17,18 +17,17 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If the enemy is onscreen, set seen to true
         if (GetComponent<Renderer>().isVisible)
         {
             seen = true;
         }
+        // If the enemy has been seen, calculate the vector from the enemy's position to the player's position
+        // and move the enemy in that direction by normalised vector multiplied by speed
         if (seen)
         {
             Vector2 direction = playerTransform.position - transform.position;
             rb.velocity = direction.normalized * speed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
         }
     }
 }

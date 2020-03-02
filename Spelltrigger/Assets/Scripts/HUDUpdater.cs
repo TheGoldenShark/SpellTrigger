@@ -19,6 +19,7 @@ public class HUDUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Updates the health and score part of the UI to their assosciated values in player and data
         health.text = player.health.ToString();
         score.text = data.GetCurrentScore().ToString();
     }

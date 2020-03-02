@@ -10,11 +10,13 @@ public class EnemyContactAttack : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // Calculates damage based on baseDamage and difficulty
         damage = (int)(GetComponentInParent<Enemy>().baseDamage * gameManager.difficulty);
     }
 
     public void OnTriggerStay2D(Collider2D other)
     {
+        // When colliding with a player, run the takeDamage function, passing the enemy's damage as the parameter
         if (other.tag == "Player")
         {
             Player player = other.GetComponent<Player>();

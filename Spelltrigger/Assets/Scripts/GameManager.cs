@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
-        // Loads the game over scene
+        // Loads the game over scene, stores the current score, and saves
         data.StoreScore();
         SceneManager.UnloadSceneAsync("Main");
         SceneManager.UnloadSceneAsync("Level");
@@ -29,12 +29,14 @@ public class GameManager : MonoBehaviour
 
     public void Announcement(string message)
     {
+        // Places the announcement object and sets its text as the parameter
         GameObject announcementInstance = Instantiate(announcementPrefab, transform.position, Quaternion.identity) as GameObject;
         announcementInstance.GetComponentInChildren<Text>().text = message;
     }
 
     public void nextLevel()
     {
+        // Increases the difficulty, announces the level number, unloads the current level and loads a new one
         difficulty += 1;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
         Announcement("Level" + difficulty.ToString());
