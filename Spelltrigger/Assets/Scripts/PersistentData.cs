@@ -11,17 +11,20 @@ public class PersistentData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Loads the savedata when started
         saveData = SaveManager.LoadSaveData();
         scoreList = saveData.scoreList;
     }
 
     public void ScoreUpdate(float score)
     {
+        // increments the current score
         currentScore += score;
     }
 
     public void StoreScore()
     {
+        // Stores the current score and resets it to zero
         scoreList.Add(currentScore);
         currentScore = 0f;
     }

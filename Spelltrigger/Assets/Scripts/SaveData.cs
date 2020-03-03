@@ -10,11 +10,13 @@ public class SaveData
 
     public SaveData()
     {
+        // Constructor that makes a new scorelist when given no argument
         scoreList = new List<float>();
     }
 
     public SaveData(PersistentData data)
     {
+        // Constructor that takes the scorelist from the persistentData class instance in the parameter
         scoreList = data.GetScoreList();
     }
 }
