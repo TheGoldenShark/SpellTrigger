@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
         else
         // Decrements the timer
         {
-            timer -= 1;
+            timer -= Time.deltaTime;
         }
     }
 

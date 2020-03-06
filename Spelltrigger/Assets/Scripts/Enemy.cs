@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage (int damage)
     {
-        // Decrements tha enemy's health, sets the sprite color to red and starts the color transition timer
+        // Decrements the enemy's health, sets the sprite color to red and starts the color transition timer
         health -= damage;
         sprite.color = Color.red;
         spriteColorTimer = transitionTime;
