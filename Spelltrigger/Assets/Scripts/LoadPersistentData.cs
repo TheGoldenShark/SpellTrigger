@@ -16,10 +16,4 @@ public class LoadPersistentData : MonoBehaviour
         // Always destroy this object after the code above has finished
         Destroy(gameObject);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
